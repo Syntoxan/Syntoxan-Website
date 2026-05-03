@@ -1,18 +1,16 @@
- /* ========================================= */
-/* সাধারণ বডি সেটিং (Common Body) */
-/* ========================================= */
+
 body {
     margin: 0;
     padding: 0;
 }
 
-/* --- ইনডেক্স বা মেইন পেজের বডি --- */
+ 
 body.index-page {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f8f8;
 }
 
-/* --- প্রজেক্ট পেজের বডি --- */
+ 
 body.project-page {
     background-color: #050505;
     min-height: 100vh;
@@ -24,9 +22,6 @@ body.project-page {
     padding-bottom: 50px;
 }
 
-/* ========================================= */
-/* ইনডেক্স পেজের স্টাইল (Index Page CSS) */
-/* ========================================= */
 .header-container { display: flex; justify-content: space-between; align-items: center; background-color: #CEABB0; padding: 0 20px; height: 50px; width: 100%; box-sizing: border-box; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: relative; z-index: 100; }
 .menu-icon { display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
 .menu-icon span { width: 18px; height: 1.5px; background-color: white; display: block; transition: all 0.3s; }
@@ -110,9 +105,7 @@ body.project-page {
 .future-content-section h3 { margin: 0 0 10px 0; color: #333; font-size: 18px; }
 .future-content-section p { margin: 0; color: #777; font-size: 14px; line-height: 1.5; }
 
-/* ========================================= */
-/* প্রজেক্ট পেজের স্টাইল (Project Page CSS) */
-/* ========================================= */
+ 
 .syntoxan-core-page { background-color: #050505; margin: 0; padding: 0; display: flex; justify-content: center; align-items: flex-start; padding-top: 50px; height: 100vh; }
 .project-title-top { font-family: 'Prata', serif; font-size: 16px; color: whitesmoke; letter-spacing: 2px; position: relative; margin-bottom: 30px; animation: glitch-loop 6s infinite; z-index: 10; }
 .project-title-top span:not(.spark) { color: #C68E58; }
@@ -207,9 +200,7 @@ img[src=""], img:not([src]) { opacity: 0; visibility: hidden; }
 
 
 
-/* ========================================= */
-/* Symbol & Inner Sparks Container */
-/* ========================================= */
+ 
 .symbol-container {
     position: relative;
     width: 24px;
@@ -237,9 +228,7 @@ img[src=""], img:not([src]) { opacity: 0; visibility: hidden; }
     100% { transform: rotateY(-20deg) translateY(0px) scale(0.9); filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2)); }
 }
 
-/* ========================================= */
-/* Brown fire sparks from inside */
-/* ========================================= */
+ 
 .brown-spark {
     position: absolute;
     top: 50%;
@@ -252,7 +241,7 @@ img[src=""], img:not([src]) { opacity: 0; visibility: hidden; }
     pointer-events: none;
 }
 
-/* Brown sparks slow motion trajectory */
+ 
 .bs-1 { background: #8B4513; animation: smoothFire 2.5s infinite linear; --x: -15px; --y: -25px; }
 .bs-2 { background: #D2691E; animation: smoothFire 2.8s infinite linear 0.4s; --x: 10px; --y: -30px; }
 .bs-3 { background: #CD853F; animation: smoothFire 3s infinite linear 0.8s; --x: 15px; --y: -20px; }
@@ -353,4 +342,13 @@ img[src=""], img:not([src]) { opacity: 0; visibility: hidden; }
     0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
     30% { opacity: 0.8; filter: drop-shadow(0 0 2px #D2691E); }
     100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0); opacity: 0; }
+}
+
+
+{
+    -webkit-tap-highlight-color: transparent;
+}
+
+a, button {
+    outline: none;
 }
