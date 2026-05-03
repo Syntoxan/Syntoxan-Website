@@ -92,7 +92,32 @@ body.project-page {
 .next-btn:active { transform: translateY(-50%) scale(0.95); }
 .next-btn svg { fill: #444; width: 18px; height: 18px; }
 
-.future-content-section { max-width: 220px; padding: 10px; text-align: center; margin: 15px auto 40px auto; background: #ffffff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.future-content-section { max-width: 220px; padding: 10px; text-align: center; margin: 15px auto 40px auto; background: #ffffff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); } 
+@media screen and (min-width: 768px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+    }
+    
+    .header-container {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .bot-container-1, 
+    .premium-slider-container, 
+    .future-content-section {
+        margin: 30px auto !important;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 800px;
+    }
+}
+
 .premium-btn { margin-left: 28px; margin-top: 15px; margin-bottom: 40px; position: relative; width: 76px; height: 42px; background: linear-gradient(145deg, #15181b, #0b0c0e); border: 1px solid rgba(61, 255, 218, 0.15); border-radius: 6px; cursor: pointer; display: flex; justify-content: center; align-items: center; outline: none; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 8px rgba(61, 255, 218, 0.1); transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); overflow: hidden; animation: breatheSubtle 4s infinite ease-in-out; -webkit-tap-highlight-color: transparent; }
 
 @keyframes breatheSubtle { 0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 6px rgba(61, 255, 218, 0.1); } 50% { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 14px rgba(61, 255, 218, 0.25); } }
