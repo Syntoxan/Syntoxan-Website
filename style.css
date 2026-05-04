@@ -395,3 +395,14 @@ a, button, li, div {
     outline: none !important;
     }
         
+#plasma-sparks {
+    position: absolute;
+    top: 155px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 115px;
+    z-index: -1; 
+    pointer-events: none;
+    }
+        
