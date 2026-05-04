@@ -2,24 +2,11 @@ body {
     margin: 0;
     padding: 0;
 }
-
  
 body.index-page {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f8f8;
 }
-body.index-page {
-    color-scheme: light only !important;
-    forced-color-adjust: none !important;
-}
-
-@media (prefers-color-scheme: dark) {
-    body.index-page {
-        filter: none !important;
-        color-scheme: light !important;
-    }
-}
-
  
 body.project-page {
     background-color: #050505;
