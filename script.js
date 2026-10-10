@@ -1,4 +1,4 @@
- function scrollNext() {
+function scrollNext() {
     const track = document.getElementById('imageTrack');
     track.scrollBy({ left: 155, behavior: 'smooth' });
     if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
@@ -11,20 +11,17 @@ function toggleMenu() {
     document.getElementById('menuOverlay').classList.toggle('active');
 }
 
-
-
-
-
 const heartGroup = document.querySelector('.icon-group');
 const heartIcon = document.querySelector('.icon-group svg');
 
+if (heartIcon) {
+    heartIcon.addEventListener('click', function() {
+        heartIcon.classList.toggle('liked');
+        heartGroup.classList.toggle('liked');
+    });
+}
 
-heartIcon.addEventListener('click', function() {
-    heartIcon.classList.toggle('liked');
-    heartGroup.classList.toggle('liked');
-});
-
- const canvas = document.getElementById('plasma-sparks');
+const canvas = document.getElementById('plasma-sparks');
 
 if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -47,7 +44,7 @@ if (canvas) {
         };
     }
 
-    function animateSparks() {
+    function animatePlasmaSparks() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if (sparks.length < maxSparks && Math.random() < 0.9) {
@@ -73,20 +70,20 @@ if (canvas) {
             ctx.fillStyle = `rgba(${spark.color}, ${brightOpacity})`;
             ctx.fill();
         }
-        requestAnimationFrame(animateSparks);
+        requestAnimationFrame(animatePlasmaSparks);
     }
 
-    animateSparks();
+    animatePlasmaSparks();
 }
 
-function toggleMenu(element) {
+function toggleMenuCard(element) {
   document.querySelectorAll('.card-wrapper').forEach(el => {
     if(el !== element) el.classList.remove('is-active');
   });
   element.classList.toggle('is-active');
 }
 
-function triggerCanvasSparks(e, btn) {
+function triggerCardSparks(e, btn) {
   e.preventDefault();
   e.stopPropagation(); 
 
@@ -95,16 +92,16 @@ function triggerCanvasSparks(e, btn) {
   }
 
   const wrapper = btn.closest('.card-wrapper');
-  const canvas = wrapper.querySelector('.spark-canvas');
+  const canvasCard = wrapper.querySelector('.spark-canvas-card');
   const icon = btn.querySelector('i');
   const cardId = wrapper.getAttribute('data-id');
   
   const iconRect = btn.getBoundingClientRect();
-  const canvasRect = canvas.getBoundingClientRect();
+  const canvasRect = canvasCard.getBoundingClientRect();
   const startX = iconRect.left - canvasRect.left + (iconRect.width / 2);
   const startY = iconRect.top - canvasRect.top + (iconRect.height / 2);
 
-  fireCanvasParticles(canvas, startX, startY);
+  fireCardParticles(canvasCard, startX, startY);
 
   if (icon.classList.contains('fa-arrow-up-right-from-square')) {
     btn.classList.add('pink-active');
@@ -123,13 +120,13 @@ function triggerCanvasSparks(e, btn) {
   }
 }
 
-function fireCanvasParticles(canvas, x, y) {
-  const ctx = canvas.getContext('2d');
-  if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+function fireCardParticles(canvasCard, x, y) {
+  const ctxCard = canvasCard.getContext('2d');
+  if (canvasCard.width !== canvasCard.clientWidth || canvasCard.height !== canvasCard.clientHeight) {
+    canvasCard.width = canvasCard.clientWidth;
+    canvasCard.height = canvasCard.clientHeight;
   }
-  if (!canvas.sparks) canvas.sparks = [];
+  if (!canvasCard.sparks) canvasCard.sparks = [];
 
   const numSparks = 20; 
   const colors = ['232, 146, 164', '118, 150, 86', '234, 224, 213', '255, 255, 255', '255, 215, 0'];
@@ -138,7 +135,7 @@ function fireCanvasParticles(canvas, x, y) {
     const angle = Math.random() * Math.PI * 2;
     const velocity = Math.random() * 1.2 + 0.5; 
     const color = colors[Math.floor(Math.random() * colors.length)];
-    canvas.sparks.push({
+    canvasCard.sparks.push({
       x: x,
       y: y,
       size: Math.random() * 1.2 + 0.5, 
@@ -150,18 +147,18 @@ function fireCanvasParticles(canvas, x, y) {
     });
   }
 
-  if (!canvas.isAnimating) {
-    canvas.isAnimating = true;
-    animateSparks(canvas, ctx);
+  if (!canvasCard.isAnimating) {
+    canvasCard.isAnimating = true;
+    animateCardSparks(canvasCard, ctxCard);
   }
 }
 
-function animateSparks(canvas, ctx) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+function animateCardSparks(canvasCard, ctxCard) {
+  ctxCard.clearRect(0, 0, canvasCard.width, canvasCard.height);
   let activeSparks = false;
 
-  for (let i = 0; i < canvas.sparks.length; i++) {
-    let spark = canvas.sparks[i];
+  for (let i = 0; i < canvasCard.sparks.length; i++) {
+    let spark = canvasCard.sparks[i];
     if (spark.opacity <= 0) continue; 
     
     activeSparks = true; 
@@ -169,27 +166,29 @@ function animateSparks(canvas, ctx) {
     spark.y += spark.speedY;
     spark.opacity -= spark.fadeRate;
 
-    ctx.beginPath();
-    ctx.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
+    ctxCard.beginPath();
+    ctxCard.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
     const brightOpacity = Math.max(0, spark.opacity);
-    ctx.fillStyle = `rgba(${spark.color}, ${brightOpacity})`;
-    ctx.fill();
+    ctxCard.fillStyle = `rgba(${spark.color}, ${brightOpacity})`;
+    ctxCard.fill();
   }
 
   if (activeSparks) {
-    requestAnimationFrame(() => animateSparks(canvas, ctx));
+    requestAnimationFrame(() => animateCardSparks(canvasCard, ctxCard));
   } else {
-    canvas.isAnimating = false;
-    canvas.sparks = []; 
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    canvasCard.isAnimating = false;
+    canvasCard.sparks = []; 
+    ctxCard.clearRect(0, 0, canvasCard.width, canvasCard.height); 
   }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   const savedCardId = localStorage.getItem('savedChessCard');
   if (savedCardId) {
+    const gallery = document.querySelector('.gallery');
     const savedCard = document.querySelector(`.card-wrapper[data-id="${savedCardId}"]`);
-    if (savedCard) {
+    if (savedCard && gallery) {
+      gallery.prepend(savedCard);
       const bookmarkIcon = savedCard.querySelector('.fa-bookmark');
       if (bookmarkIcon) {
         bookmarkIcon.classList.replace('fa-regular', 'fa-solid');
@@ -208,4 +207,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.querySelectorAll('.reveal-item').forEach((el) => observer.observe(el));
 });
-   
+                    
