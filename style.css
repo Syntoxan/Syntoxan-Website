@@ -470,7 +470,6 @@ a, button, li, div {
 .board-container {
   width: 280px;
   height: 140px;
-  border-radius: 4px;
   position: relative;
   overflow: hidden;
   z-index: 2;
