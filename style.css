@@ -421,7 +421,7 @@ a, button, li, div {
     z-index: -1; 
     pointer-events: none;
     }
-        
+
 .gallery {
   display: flex;
   flex-direction: column;
@@ -580,5 +580,5 @@ a, button, li, div {
 .reveal-item.active { 
   opacity: 1; 
   transform: translateY(0); 
-      }
-    
+         }
+          
